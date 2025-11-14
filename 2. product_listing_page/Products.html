@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rasi &amp; Co. - All Products</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ec7f13",
+            "background-light": "#f8f7f6",
+            "background-dark": "#221910",
+            "content-light": "#ffffff",
+            "content-dark": "#2d2216",
+            "text-light": "#181411",
+            "text-dark": "#f8f7f6",
+            "subtle-text-light": "#897561",
+            "subtle-text-dark": "#a19182",
+            "border-light": "#e6e0db",
+            "border-dark": "#403223",
+          },
+          fontFamily: {
+            "display": ["Work Sans"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      pointer-events: all;
+      width: 1rem;
+      height: 1rem;
+      background-color: #ec7f13;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+      -moz-appearance: none;
+      pointer-events: all;
+      width: 1rem;
+      height: 1rem;
+      background-color: #ec7f13;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-10 border-b border-border-light dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="container mx-auto px-4">
+<div class="flex h-20 items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined text-primary text-3xl">local_florist</span>
+<h2 class="text-xl font-bold tracking-[-0.015em]">Rasi &amp; Co.</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary" href="#">Home</a>
+<a class="text-sm font-medium text-primary" href="#">All Products</a>
+<a class="text-sm font-medium hover:text-primary" href="#">About Us</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:block">
+<label class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-subtle-text-light dark:text-subtle-text-dark">search</span>
+<input class="w-full rounded-lg border-none bg-content-light dark:bg-content-dark py-2 pl-10 pr-4 text-sm placeholder:text-subtle-text-light dark:placeholder:text-subtle-text-dark focus:ring-2 focus:ring-primary" placeholder="Search for spices, flours..." type="search"/>
+</label>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full hover:bg-primary/20">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full hover:bg-primary/20">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+                <button class="relative flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full hover:bg-primary/20">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span id="cart-count" class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">3</span>
+                </button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="container mx-auto flex-1 px-4 py-8">
+<div class="flex flex-col gap-8 md:flex-row">
+<aside class="w-full md:w-1/4 lg:w-1/5">
+<div class="sticky top-28 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em]">Filters</h3>
+<button class="text-sm font-medium text-primary hover:underline">Clear All</button>
+</div>
+<div class="flex flex-col border-y border-border-light dark:border-border-dark">
+<details class="flex flex-col py-2 group" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+<p class="text-sm font-bold">Category</p>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="flex flex-col gap-3 pt-2 pb-2">
+<label class="flex items-center gap-2 text-sm text-subtle-text-light dark:text-subtle-text-dark hover:text-text-light dark:hover:text-text-dark">
+<input class="h-4 w-4 rounded border-border-light dark:border-border-dark bg-content-light dark:bg-content-dark text-primary focus:ring-primary" type="checkbox"/> Kambhu Flour
+                  </label>
+<label class="flex items-center gap-2 text-sm text-subtle-text-light dark:text-subtle-text-dark hover:text-text-light dark:hover:text-text-dark">
+<input checked="" class="h-4 w-4 rounded border-border-light dark:border-border-dark bg-content-light dark:bg-content-dark text-primary focus:ring-primary" type="checkbox"/> Ragi Flour
+                  </label>
+<label class="flex items-center gap-2 text-sm text-subtle-text-light dark:text-subtle-text-dark hover:text-text-light dark:hover:text-text-dark">
+<input class="h-4 w-4 rounded border-border-light dark:border-border-dark bg-content-light dark:bg-content-dark text-primary focus:ring-primary" type="checkbox"/> Kelvaraghu Flour
+                  </label>
+<label class="flex items-center gap-2 text-sm text-subtle-text-light dark:text-subtle-text-dark hover:text-text-light dark:hover:text-text-dark">
+<input class="h-4 w-4 rounded border-border-light dark:border-border-dark bg-content-light dark:bg-content-dark text-primary focus:ring-primary" type="checkbox"/> Athirasam Flour
+                  </label>
+<label class="flex items-center gap-2 text-sm text-subtle-text-light dark:text-subtle-text-dark hover:text-text-light dark:hover:text-text-dark">
+<input class="h-4 w-4 rounded border-border-light dark:border-border-dark bg-content-light dark:bg-content-dark text-primary focus:ring-primary" type="checkbox"/> Spices
+                  </label>
+</div>
+</details>
+<details class="flex flex-col border-t border-t-border-light dark:border-t-border-dark py-2 group" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+<p class="text-sm font-bold">Price Range</p>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="relative flex flex-col gap-3 pt-4 pb-2">
+<div class="relative h-1 w-full rounded-full bg-border-light dark:border-border-dark">
+<div class="absolute h-1 rounded-full bg-primary" style="left: 10%; right: 20%;"></div>
+<input class="absolute w-full h-1 bg-transparent pointer-events-none appearance-none top-0" max="100" min="0" type="range" value="10"/>
+<input class="absolute w-full h-1 bg-transparent pointer-events-none appearance-none top-0" max="100" min="0" type="range" value="80"/>
+</div>
+<div class="flex justify-between text-sm text-subtle-text-light dark:text-subtle-text-dark">
+<span>$1</span>
+<span>$20</span>
+</div>
+</div>
+</details>
+</div>
+<button class="w-full rounded-lg bg-primary py-2.5 text-sm font-bold text-white shadow-sm hover:opacity-90">Apply Filters</button>
+</div>
+</aside>
+<div class="w-full md:w-3/4 lg:w-4/5">
+<div class="mb-6">
+<div class="flex flex-wrap gap-2 text-sm mb-4">
+<a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">Home</a>
+<span class="text-subtle-text-light dark:text-subtle-text-dark">/</span>
+<a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">Flours</a>
+<span class="text-subtle-text-light dark:text-subtle-text-dark">/</span>
+<span class="font-medium text-text-light dark:text-text-dark">Ragi</span>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div>
+<p class="text-4xl font-black tracking-[-0.033em]">Ragi Flour</p>
+<p class="text-subtle-text-light dark:text-subtle-text-dark mt-1">Discover our authentic and natural flours.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-subtle-text-light dark:text-subtle-text-dark">Sort by:</span>
+<select class="rounded-lg border-border-light dark:border-border-dark bg-content-light dark:bg-content-dark text-sm font-medium focus:border-primary focus:ring-primary">
+<option>Relevance</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest Arrivals</option>
+</select>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-content-light dark:bg-content-dark border border-border-light dark:border-border-dark shadow-sm transition-shadow hover:shadow-lg">
+<div class="aspect-square w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="A bowl of dark ragi flour with grains scattered around it." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDxhuIVFyLXsktwvI28unHyZQFBHA_a7Eold_wWsa7QQvp7GXMTgvNytD8r-25JvqC8FP2_HsQ6u5Ns_hXw_NcLKZJvmoO3iPEQueew_0zipGo5xgl5D-M-3stQBppaCakmghwDtv9u_2O5Et2Zq3D4AsUVoZTbexxNVFdmR5DY1Vh1_Z4yIU9OxFyubAuhHLOArHQA4HfVUSXrLg2hHHPhK6PQX-eK3CEgU5uSSL--OxxRvgdehR9I7yA8OttSwuS3SjweZtvcyXVc');"></div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<h4 class="text-base font-bold">Organic Ragi Flour</h4>
+<p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">1 kg</p>
+<div class="mt-4 flex flex-1 items-end justify-between">
+        <p class="text-lg font-bold text-primary">$5.99</p>
+        <a href="../4.%20shopping_cart_page/cart.html?add=ragi" data-add="ragi" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
+          <span class="material-symbols-outlined">add_shopping_cart</span>
+        </a>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-content-light dark:bg-content-dark border border-border-light dark:border-border-dark shadow-sm transition-shadow hover:shadow-lg">
+<div class="aspect-square w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="A rustic wooden bowl filled with stone-ground ragi flour." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBU6XPx7lFNfm4uDkVtyOsTgXop7ZGpmaKWt-BNaVb8F0VLKj4O620vUKrQHPQIfaiTC4vj3bMt79EOacZSipEuQ-mxLF6cEolACcsctTh8I9rLB_hQRarFNPh2MVhvHeiUFrfNqCBgVQ4YMX-P5CBulL7HqMdmcIL1nyCWPHLNlCz1TR55mhizbTk0Eje8i-OShcOzUQUBwsI0Yc7vvU6gcL4r0p6Jx2nt9nocCLgV1qZhfNuRuPNapegzFgnc06uriG9k-06Xqx02');"></div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<h4 class="text-base font-bold">Stone-Ground Ragi</h4>
+<p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">500 g</p>
+<div class="mt-4 flex flex-1 items-end justify-between">
+        <p class="text-lg font-bold text-primary">$3.49</p>
+        <a href="../4.%20shopping_cart_page/cart.html?add=ragi" data-add="ragi" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
+          <span class="material-symbols-outlined">add_shopping_cart</span>
+        </a>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-content-light dark:bg-content-dark border border-border-light dark:border-border-dark shadow-sm transition-shadow hover:shadow-lg">
+<div class="aspect-square w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="Red millet grains in a burlap sack, representing ragi." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCL69puAwYCZjpwOMISVZkAONbRC5SdwpMVaYGojeups583i6mjwfpagtWxIsvgBVzOM1swiFbCdvXJELSwAGgk745HaGAI3gp7mPRBO5xpLRZOLqvMDsGIMpodoeJB7WvMIDYEKIUiUYHPKqmD9sQi35qGdVftcFOrdqHo3F3jjKE3C0qhl3Td9Qp7xetCRBeSaxX4SnvEwhonHInRKWFcYPqPR6T4FXrN4yF1Teb7LFE7zoTz38LCYIm4cEBIm4KMsNrcbi56chnE');"></div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<h4 class="text-base font-bold">Sprouted Ragi Flour</h4>
+<p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">1 kg</p>
+<div class="mt-4 flex flex-1 items-end justify-between">
+        <p class="text-lg font-bold text-primary">$7.99</p>
+        <a href="../4.%20shopping_cart_page/cart.html?add=ragi" data-add="ragi" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
+          <span class="material-symbols-outlined">add_shopping_cart</span>
+        </a>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-content-light dark:bg-content-dark border border-border-light dark:border-border-dark shadow-sm transition-shadow hover:shadow-lg">
+<div class="aspect-square w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="Kambhu flour in a white ceramic bowl." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcsUaJ4vPJT29QwI4bCwar6B-W6k6bn-tBYhnO-MUNlck3W48GfimyLaIcsI5kKUAomIIr0jl4YHk6t28SPzlCvYdp7hQ_bsNztxnKg_oqIPZR10GzZjB_-5dBegJov6Jyb4eZbODgjLzZ0b660zUnd0497MIuOwH2NsFKzMoaUvuwrpB8byh_wz-0ej-kblsTzaqfo-izluipo5dyfBcV9tm9xY8VAQni4sqWn4ZqUpJdUOVQ7V2WD7nvVDMLFIYP-V1btEhHaItc');"></div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<h4 class="text-base font-bold">Organic Kambhu Flour</h4>
+<p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">1 kg</p>
+<div class="mt-4 flex flex-1 items-end justify-between">
+        <p class="text-lg font-bold text-primary">$6.49</p>
+        <a href="../4.%20shopping_cart_page/cart.html?add=kambhu" data-add="kambhu" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
+          <span class="material-symbols-outlined">add_shopping_cart</span>
+        </a>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-content-light dark:bg-content-dark border border-border-light dark:border-border-dark shadow-sm transition-shadow hover:shadow-lg">
+<div class="aspect-square w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="A mix of colorful spices including turmeric, paprika, and chili powder in small bowls." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6Nmow8qJOPxErj1_9EOqGSF81Q5q_F2kJ9uPxJlTfwaOgXZaKbA-puNkMWmlO7gW_lf-qM6gQJ8rITzOwWLLZ3o45VmxUD5VP7xAE35j9sEBPzoq2-om9JVnEz2uaH-5yTaQKMsbZHl4gvRcXoxGMGD2_lDfrC_fGu2I8hXK7SAvJJEc1FWMdkgwMd9lOHwCZD8jNMe--9VTW1NZKZS_ui3UJJgiPTfl3AJPo5RsF7bhPvLR5Br2oOCPhJUU-rnGyNR_t1RYeCdoH');"></div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<h4 class="text-base font-bold">Turmeric Powder</h4>
+<p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">250 g</p>
+<div class="mt-4 flex flex-1 items-end justify-between">
+        <p class="text-lg font-bold text-primary">$4.99</p>
+        <a href="../4.%20shopping_cart_page/cart.html?add=spice-blend" data-add="spice-blend" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
+          <span class="material-symbols-outlined">add_shopping_cart</span>
+        </a>
+</div>
+</div>
+</div>
+<div class="group relative flex flex-col overflow-hidden rounded-xl bg-content-light dark:bg-content-dark border border-border-light dark:border-border-dark shadow-sm transition-shadow hover:shadow-lg">
+<div class="aspect-square w-full overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="Athirasam sweet dough being prepared." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAXaBK-D1gMQj7plew8ZqET5fQWxovCy5EmNfX_y-2cQvzA5hoyZD01iupyhCoHUlIV0dCQ9v8I0vqUOV-PyaI3YlnGY1_R2a5ikznChX51nsQOYOEK153EvRAkMsNHD4W0tQ7QwMiy76mtIspsashoR1VVpNuvJiNr8xZ4T1IEW4PrFNvvHNrVQnCy7sSd6yJk9b2a0pii5MAKgrdY_wosQrQPww5m2AhGbiMYR7SdM5YhtjoqDfq8PXDlbCLsVoDEUBxLdM_TdEX');"></div>
+</div>
+<div class="flex flex-1 flex-col p-4">
+<h4 class="text-base font-bold">Athirasam Flour Mix</h4>
+<p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">500 g</p>
+<div class="mt-4 flex flex-1 items-end justify-between">
+        <p class="text-lg font-bold text-primary">$8.99</p>
+        <a href="../4.%20shopping_cart_page/cart.html?add=athirasam" data-add="athirasam" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
+          <span class="material-symbols-outlined">add_shopping_cart</span>
+        </a>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-center">
+<nav class="flex items-center gap-2">
+<a class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-subtle-text-light dark:text-subtle-text-dark hover:border-primary hover:text-primary" href="#">
+<span class="material-symbols-outlined text-xl">chevron_left</span>
+</a>
+<a class="flex h-9 w-9 items-center justify-center rounded-lg border border-primary bg-primary text-white" href="#">1</a>
+<a class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-subtle-text-light dark:text-subtle-text-dark hover:border-primary hover:text-primary" href="#">2</a>
+<a class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-subtle-text-light dark:text-subtle-text-dark hover:border-primary hover:text-primary" href="#">3</a>
+<span class="text-subtle-text-light dark:text-subtle-text-dark">...</span>
+<a class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-subtle-text-light dark:text-subtle-text-dark hover:border-primary hover:text-primary" href="#">8</a>
+<a class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-subtle-text-light dark:text-subtle-text-dark hover:border-primary hover:text-primary" href="#">
+<span class="material-symbols-outlined text-xl">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-16 bg-content-light dark:bg-content-dark border-t border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 py-12">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-2 text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined text-primary text-3xl">local_florist</span>
+<h2 class="text-xl font-bold tracking-[-0.015em]">Rasi &amp; Co.</h2>
+</div>
+<p class="mt-4 text-sm text-subtle-text-light dark:text-subtle-text-dark">Authentic, natural spices and flours delivered to your doorstep.</p>
+</div>
+<div>
+<h5 class="font-bold">Shop</h5>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">All Products</a></li>
+<li><a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">Flours</a></li>
+<li><a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">Spices</a></li>
+<li><a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">Offers</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold">About</h5>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">Our Story</a></li>
+<li><a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">FAQs</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold">Follow Us</h5>
+<div class="mt-4 flex gap-4">
+<a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+</a>
+<a class="text-subtle-text-light dark:text-subtle-text-dark hover:text-primary" href="#">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-12 border-t border-border-light dark:border-border-dark pt-8 text-center text-sm text-subtle-text-light dark:text-subtle-text-dark">
+<p>© 2024 Rasi &amp; Co. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+<script>
+// In-place Add-to-Cart: prevent navigation, add product to localStorage cart, show toast, update cart badge.
+(function(){
+  const products = {
+    ragi: { id: 'ragi', name: 'Ragi Flour - 1kg', price: 120.00 },
+    kambhu: { id: 'kambhu', name: 'Kambhu Flour - 500g', price: 95.00 },
+    'athirasam': { id: 'athirasam', name: 'Traditional Athirasam Flour Mix', price: 150.00 },
+    'spice-blend': { id: 'spice-blend', name: 'Aromatic Spice Blend', price: 200.00 }
+  };
+
+  function loadCart(){ try{ return JSON.parse(localStorage.getItem('rasi_cart')||'[]'); }catch(e){ return []; } }
+  function saveCart(cart){ localStorage.setItem('rasi_cart', JSON.stringify(cart)); }
+  function updateBadge(){ const cart = loadCart(); const count = cart.reduce((s,i)=>s + (i.qty||1),0); const el = document.getElementById('cart-count'); if(el) el.textContent = String(count); }
+  function toast(msg){ const n = document.createElement('div'); n.className = 'fixed bottom-6 right-6 bg-primary text-white px-4 py-2 rounded-lg shadow-lg'; n.textContent = msg; document.body.appendChild(n); setTimeout(()=>n.remove(),1500); }
+
+  function addToCart(id){ const p = products[id]; if(!p) return; const cart = loadCart(); const existing = cart.find(i=>i.id===id); if(existing) existing.qty = (existing.qty||1)+1; else cart.push({ id: p.id, name: p.name, price: p.price, qty: 1 }); saveCart(cart); updateBadge(); }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    updateBadge();
+    document.querySelectorAll('a[data-add]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const id = a.getAttribute('data-add');
+        addToCart(id);
+        toast('Added to cart');
+      });
+    });
+  });
+})();
+</script>
+</body></html>

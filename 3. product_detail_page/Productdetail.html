@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Detail Page - Rasi &amp; Co.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec7f13",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221910",
+                        "accent": {
+                            "DEFAULT": "#D95F43",
+                            "secondary": "#6D5D4D"
+                        },
+                        "surface": {
+                           "DEFAULT": "#FCF9F4",
+                           "dark": "#1a1a1a"
+                        },
+                        "text-primary": "#181411",
+                        "text-secondary": "#6D5D4D",
+                        "text-primary-dark": "#f8f7f6",
+                        "text-secondary-dark": "#a39e99"
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="font-display bg-surface dark:bg-background-dark text-text-primary dark:text-text-primary-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f2f0] dark:border-b-accent-secondary/30 px-4 sm:px-10 py-3 sticky top-0 bg-surface/80 dark:bg-background-dark/80 backdrop-blur-sm z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-text-primary dark:text-text-primary-dark">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Rasi &amp; Co.</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium leading-normal text-primary" href="#">Shop</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About Us</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-2 md:gap-4">
+<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-secondary dark:text-text-secondary-dark flex border-none bg-background-light dark:bg-surface-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-primary dark:text-text-primary-dark focus:outline-0 focus:ring-0 border-none bg-background-light dark:bg-surface-dark focus:border-none h-full placeholder:text-text-secondary dark:placeholder:text-text-secondary-dark px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search" value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-background-light dark:bg-surface-dark text-text-primary dark:text-text-primary-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-background-light dark:bg-surface-dark text-text-primary dark:text-text-primary-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAJjYJFrHr0rdSZLzvz1rG3LOXC727hViU3T6_ADSRYjQRSrJ77WQGVNglQST1aYVjzyEuVf7YZkBBJNOGl7JAmoxGsgNuZLRNGV6qtiN1mOE-t1aN0v7nmpGA1nxcNVUYjke1sEnID6r07Te1PLs5FEkWD5slFq84_GhhCKO5CzTOKevvzcskrXZWjmtu-j0Z5f9sbX6yub4mGRT03_UyHBCNysn0Y9MVSUNNnhpceLlgwCFM4wIRLn484GqIHGXvjfzUs600F_lV2");'></div>
+</div>
+</header>
+<main class="px-4 sm:px-10 lg:px-20 py-8">
+<div class="layout-content-container flex flex-col max-w-7xl mx-auto flex-1">
+<div class="flex flex-wrap gap-2 mb-8">
+<a class="text-text-secondary dark:text-text-secondary-dark text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-text-secondary dark:text-text-secondary-dark text-sm font-medium leading-normal">/</span>
+<a class="text-text-secondary dark:text-text-secondary-dark text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Flours</a>
+<span class="text-text-secondary dark:text-text-secondary-dark text-sm font-medium leading-normal">/</span>
+<span class="text-text-primary dark:text-text-primary-dark text-sm font-medium leading-normal">Organic Ragi Flour</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+<div class="flex flex-col gap-4">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl shadow-sm" data-alt="A large bag of Organic Ragi Flour" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9Mw8np15GUaFGVwMphi5RCL22r70Ee61T9lFrXa-oQt_dvtT5JJ5Mw-q5ryZXChX3QAdZT0Z2lGltVD2fEZFkVXy_5V8Df0j44M8gtYR8HgNEWgclmQn4KTEmXsPXKZkHy4L-m7v9CZh74ythnKastrlP3fOnBCB5Yb1WXLl4ayS_-zKg0qt42cg9yQXNVo97T6uQlrP-5BiKnUWqfxnh6HBT8GFF0CeGDNLwwqC_pVELIA-Iaws7cll-Cooh_OW4Jjaamof99R9t");'></div>
+<div class="grid grid-cols-[repeat(auto-fit,minmax(80px,1fr))] gap-3">
+<div class="flex flex-col gap-3">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg cursor-pointer border-2 border-primary" data-alt="Thumbnail of Ragi flour bag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0cX9HQIqFuSFtPg_Pazq8BHgS7Rs7HyItjVc9RMLWwW6JcaDEV7ITtM1RTWBldPUPqzB6u35dhxhPEKa8zbgSMjrrhqgR2oWwQ5gsojkYxqDp-K-yS5LfrN22Qk3xEfRyDaFTLVujuqoylDT7bgiwentgy_BF3Ugr4VWUhC8Hll9FvzQy1NL7r5j3x3yuPfed7k5SZ2m8cA2bVJMBdZBwAA4nSWgYklaSy3i45N4BSxzVv7DaR1WqdFgiybEosL3WhTyMDkHWqZRb");'></div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg cursor-pointer opacity-70 hover:opacity-100 transition-opacity" data-alt="Thumbnail of Ragi grains" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxmojaa5xMM7YgPY6K0pKnvrgeIH_Yzf7p_lkU7Bi89klKj0ZosUf0iooXwDZzxW9c0WmhbHQF56GQQH5uQC0X-OderSuAZx019jw3QW2Gb9uSAhraZ1FgF9uzOSjUvGCzBAoQdV2nnyo5QNCBEX6EkYVwaPe9HEVMXac7by-J6BrwxYQNFLqJyYb9X5mmZuIYwqKkucwsnZFd758PE9pi3tcuKe_vWYlXtruhHrc_2lhSHg_4CbleDOC01vkr2GAOklbFJmZI1QBn");'></div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg cursor-pointer opacity-70 hover:opacity-100 transition-opacity" data-alt="Thumbnail of a dish made with Ragi flour" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNUeVNjSQRQyLfWcxgSMb4CmPdWjHCmfWNH0oCeIZsqZTEYxxVzi-Phq7rtkuyrWJypZFwvsH__qnJ9yq-ReMNSZEqG8B126io8VtC76NhdMRlsS5OL527OQ4FilWhDOK3wlqgutP4N4kUd9LMP4LJxPE0YioWeipUTiIFhrlNXOoE6qLQBn5J2-QwiN8wJGN73sy7w-XfvsQdMPkf9jpDBiIN9UHFiRyKWTyKXwp010zL1b3RNL4XF4DO857-ERfjiNDk05hWBqAw");'></div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg cursor-pointer opacity-70 hover:opacity-100 transition-opacity" data-alt="Thumbnail of the nutritional facts label" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADwdCAAr0ad25tQJp3dKdggEaxOR8D5qqF2BCGpNUExhnGdstBj6ddRf9RdmWaZRJUitRUxro2pPPgspkNTU9JBiKviEiTF8Co2pbb6UU10HyDg3AB6Tu5iiOMcu1fb0RPYKG7LMPlC4QrdVJMLOaJPMG3z2zDZF0KNfZcqwbLOPAb0NSlOPNPWtz2728o0RVacylMTK6BMtsCr2PN_XD3nBbqA1UKC9NWMVe2vlPj_5GwbZVX8-WRQCqlHRFI_VGQudr_aPB6e_xJ");'></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-3">
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tighter">Organic Ragi Flour</h1>
+<p class="text-2xl font-bold text-primary">$12.99</p>
+<div class="flex items-center gap-2">
+<div class="flex text-primary">
+<span class="material-symbols-outlined !text-xl">star</span>
+<span class="material-symbols-outlined !text-xl">star</span>
+<span class="material-symbols-outlined !text-xl">star</span>
+<span class="material-symbols-outlined !text-xl">star</span>
+<span class="material-symbols-outlined !text-xl">star_half</span>
+</div>
+<a class="text-sm text-text-secondary dark:text-text-secondary-dark hover:underline" href="#reviews">(125 reviews)</a>
+</div>
+<p class="text-base text-text-secondary dark:text-text-secondary-dark max-w-prose">
+                                    Our stone-ground Organic Ragi (Finger Millet) Flour is a nutritional powerhouse, rich in calcium and fiber. Perfect for making wholesome rotis, dosas, and porridges.
+                                </p>
+</div>
+<div class="flex flex-col gap-4 p-6 bg-background-light dark:bg-surface-dark rounded-xl">
+<div class="flex items-center gap-4">
+<p class="font-semibold">Quantity:</p>
+<div class="flex items-center border border-gray-300 dark:border-accent-secondary/50 rounded-lg">
+<button class="px-3 py-2 text-lg font-bold text-text-secondary dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-accent-secondary/30 rounded-l-md transition-colors">-</button>
+<input class="w-12 text-center border-0 bg-transparent focus:ring-0 p-2 font-semibold" type="text" value="1"/>
+<button class="px-3 py-2 text-lg font-bold text-text-secondary dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-accent-secondary/30 rounded-r-md transition-colors">+</button>
+</div>
+</div>
+                <div class="flex items-center gap-3">
+                    <a href="../4.%20shopping_cart_page/cart.html?add=ragi" role="button" aria-label="Add Organic Ragi Flour to cart" class="w-full flex items-center justify-center gap-2 h-12 px-6 rounded-lg bg-accent text-white font-bold text-base hover:bg-accent/90 transition-colors">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                        Add to Cart
+                    </a>
+                    <button class="flex-shrink-0 size-12 flex items-center justify-center rounded-lg border border-gray-300 dark:border-accent-secondary/50 text-text-secondary dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-accent-secondary/20 transition-colors">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </button>
+                </div>
+</div>
+<div class="flex items-center gap-3 p-4 border border-dashed border-accent-secondary/50 rounded-lg">
+<span class="material-symbols-outlined text-accent-secondary text-2xl">local_shipping</span>
+<p class="text-sm text-text-secondary dark:text-text-secondary-dark">Free shipping on orders over $50. Estimated delivery: 3-5 business days.</p>
+</div>
+</div>
+</div>
+<div class="mt-16">
+<div class="border-b border-gray-200 dark:border-accent-secondary/30">
+<nav aria-label="Tabs" class="flex gap-8">
+<a class="py-4 px-1 border-b-2 font-semibold text-base border-primary text-primary" href="#">Description</a>
+<a class="py-4 px-1 border-b-2 font-semibold text-base border-transparent text-text-secondary dark:text-text-secondary-dark hover:border-gray-300 hover:text-text-primary dark:hover:border-accent-secondary dark:hover:text-text-primary-dark transition-colors" href="#">Nutritional Info</a>
+<a class="py-4 px-1 border-b-2 font-semibold text-base border-transparent text-text-secondary dark:text-text-secondary-dark hover:border-gray-300 hover:text-text-primary dark:hover:border-accent-secondary dark:hover:text-text-primary-dark transition-colors" href="#">Usage</a>
+</nav>
+</div>
+<div class="py-8 prose dark:prose-invert max-w-none prose-p:text-text-secondary dark:prose-p:text-text-secondary-dark">
+<p>Discover the ancient goodness of Ragi, also known as Finger Millet. Our flour is sourced from certified organic farms and is stone-ground to preserve its natural nutrients and flavor. It is an excellent source of calcium, iron, and dietary fiber, making it a perfect addition to a healthy diet.</p>
+<ul class="list-disc pl-5">
+<li><strong>100% Organic:</strong> Free from pesticides and harmful chemicals.</li>
+<li><strong>Gluten-Free:</strong> A great alternative for those with gluten sensitivities.</li>
+<li><strong>Rich in Fiber:</strong> Promotes digestive health and keeps you full longer.</li>
+<li><strong>High in Calcium:</strong> Essential for strong bones and teeth.</li>
+</ul>
+<p>Use it to make soft rotis, crispy dosas, nutritious porridge, or bake it into healthy cookies and cakes. Its earthy flavor adds a unique taste to your dishes.</p>
+</div>
+</div>
+<div class="mt-16" id="reviews">
+<h2 class="text-3xl font-bold mb-6">Customer Reviews</h2>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="w-full md:w-1/3 p-6 bg-background-light dark:bg-surface-dark rounded-xl">
+<p class="text-lg font-bold mb-1">4.5 out of 5</p>
+<div class="flex text-primary mb-3">
+<span class="material-symbols-outlined !text-xl">star</span><span class="material-symbols-outlined !text-xl">star</span><span class="material-symbols-outlined !text-xl">star</span><span class="material-symbols-outlined !text-xl">star</span><span class="material-symbols-outlined !text-xl">star_half</span>
+</div>
+<div class="space-y-2 text-sm">
+<div class="flex items-center gap-2"><span class="w-12">5 star</span><div class="w-full bg-gray-200 dark:bg-accent-secondary/30 rounded-full h-2"><div class="bg-primary h-2 rounded-full" style="width: 80%"></div></div><span>80%</span></div>
+<div class="flex items-center gap-2"><span class="w-12">4 star</span><div class="w-full bg-gray-200 dark:bg-accent-secondary/30 rounded-full h-2"><div class="bg-primary h-2 rounded-full" style="width: 15%"></div></div><span>15%</span></div>
+<div class="flex items-center gap-2"><span class="w-12">3 star</span><div class="w-full bg-gray-200 dark:bg-accent-secondary/30 rounded-full h-2"><div class="bg-primary h-2 rounded-full" style="width: 3%"></div></div><span>3%</span></div>
+<div class="flex items-center gap-2"><span class="w-12">2 star</span><div class="w-full bg-gray-200 dark:bg-accent-secondary/30 rounded-full h-2"><div class="bg-primary h-2 rounded-full" style="width: 2%"></div></div><span>2%</span></div>
+<div class="flex items-center gap-2"><span class="w-12">1 star</span><div class="w-full bg-gray-200 dark:bg-accent-secondary/30 rounded-full h-2"><div class="bg-primary h-2 rounded-full" style="width: 0%"></div></div><span>0%</span></div>
+</div>
+</div>
+<div class="w-full md:w-2/3 space-y-6">
+<div class="border-b border-gray-200 dark:border-accent-secondary/30 pb-6">
+<div class="flex justify-between items-center mb-2">
+<p class="font-bold">Priya K.</p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined !text-base">star</span><span class="material-symbols-outlined !text-base">star</span><span class="material-symbols-outlined !text-base">star</span><span class="material-symbols-outlined !text-base">star</span><span class="material-symbols-outlined !text-base">star</span>
+</div>
+</div>
+<p class="text-sm text-text-secondary dark:text-text-secondary-dark mb-2">October 26, 2023</p>
+<p class="text-text-secondary dark:text-text-secondary-dark">Excellent quality and very fresh. Made the softest ragi rotis I've ever had. Highly recommend!</p>
+</div>
+<div class="border-b border-gray-200 dark:border-accent-secondary/30 pb-6">
+<div class="flex justify-between items-center mb-2">
+<p class="font-bold">Ravi S.</p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined !text-base">star</span><span class="material-symbols-outlined !text-base">star</span><span class="material-symbols-outlined !text-base">star</span><span class="material-symbols-outlined !text-base">star</span><span class="material-symbols-outlined !text-base text-gray-300">star</span>
+</div>
+</div>
+<p class="text-sm text-text-secondary dark:text-text-secondary-dark mb-2">October 15, 2023</p>
+<p class="text-text-secondary dark:text-text-secondary-dark">Good product. The packaging was secure and the flour seems to be of good quality. A bit pricey but worth it.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-20">
+<h2 class="text-3xl font-bold mb-6">You Might Also Like</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<div class="flex flex-col gap-3 group">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg overflow-hidden">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover group-hover:scale-105 transition-transform duration-300" data-alt="Bag of Kambhu flour" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6h7JttASV-mrdxJdUkzvoFm1GLw-NEezDIOia-cstVhQCYnmkhAN7AxMtfB3-29Ub-OQD1iC-IueWPzfXhIAEjqvy2Lw9U1r2cbSHAGpJ5vZbHEtFSxG9vD9qvUvjmBac-gHNeO1P3h_oT8GNuuKpyX-RHE8YudZWXcgFMTZLq4D4klL681r7lxLlBsy2ahwudhumhdJmZbsL-g2-gvHrR5CqTUKdeSpGZm-8omWvyyxtSXb2mEG5BuXuQL7BXRbtrD12VqlSs06B");'></div>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-lg group-hover:text-primary transition-colors">Pearl Millet (Kambhu) Flour</h3>
+<p class="text-text-secondary dark:text-text-secondary-dark">$11.50</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 group">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg overflow-hidden">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover group-hover:scale-105 transition-transform duration-300" data-alt="Bag of Kelvaraghu flour" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgVgFeWbBf0Ogi3pFZPuYZ0erDiyeWFb1UOlTSB1kHipqc5uSelC_l2ina8djXQX1BfL5tQQSD-AuUDIL6yMLl8l28l7mVu_Qrus7oQFHCggI5oj9JWPxm3z4UDHSXiu0ECyJ5kEf2qqjmvAWnLCj01HvCgT1HPWbmgX6iqeJzsdJ04ehXPaqdpJWH3EBhlTJmPAdIm-3svmMZZ2_44MW4qPWyf_aBfluJtVVA_haDl3SIb5lPc1GzYmgn9sqetZhUqFd5hV683ucc");'></div>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-lg group-hover:text-primary transition-colors">Kelvaraghu Flour</h3>
+<p class="text-text-secondary dark:text-text-secondary-dark">$13.00</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 group">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg overflow-hidden">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover group-hover:scale-105 transition-transform duration-300" data-alt="Bag of Athirasam flour mix" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5IVxNw6rASkhBuB_7Z7oV_qNHhsSofUH2PtzeGTM2TNi8N4fTtjfzujyJQUvz_mOwKmeaGsWPhHToPjtpBEcXdLYEl-ebAmFziS4C732CW51dCs4_oHzrzpUMJjZcZ49iKR0LNUyeUN4g1JRl4Q0lXjBwT14m4wpKdbUFkMb-1VoD6KzdG8-Ww7UyyzkhyVu2aDFaJWG2jxF8oly7kQsibAy_arA8wqMYcNDu5ca9VKNh6tdR0Tc4BGsMx5xHBxVKarPTFXT66vY7");'></div>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-lg group-hover:text-primary transition-colors">Athirasam Flour Mix</h3>
+<p class="text-text-secondary dark:text-text-secondary-dark">$9.99</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 group">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg overflow-hidden">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover group-hover:scale-105 transition-transform duration-300" data-alt="Bag of Organic Turmeric Powder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCuFVWZuWs3eoatY6SikZv4ntPMTCEb0wyMYvUMgBryIPhjVwliQNU25uyrb9FiWfVeV7G3Wz07XQ7dVb7OdSIQJFGmUS3FpkpRhMoKANyrWFXh8E1Ska7CW1tzCpwywKHOzlCL2EBiK8reNyMo6ACgrALhHe1Yg6VlHCO23vRMddbaEJiEVeN0VchNE-qQho0HRRgblMLLX6gfJnupMws7ZGmMjEktLMBh8EsrXr4obj3pu-vN5XCwCRHN5DAa4OMkRzcde6gJ92es");'></div>
+</div>
+<div class="flex flex-col">
+<h3 class="font-bold text-lg group-hover:text-primary transition-colors">Organic Turmeric Powder</h3>
+<p class="text-text-secondary dark:text-text-secondary-dark">$8.50</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

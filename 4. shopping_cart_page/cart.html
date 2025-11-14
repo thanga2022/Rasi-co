@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shopping Cart - Rasi &amp; Co.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec7f13",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221910",
+                        "text-light": "#181411",
+                        "text-dark": "#f8f7f6",
+                        "subtle-light": "#897561",
+                        "subtle-dark": "#a19182",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2a2118",
+                        "border-light": "#f4f2f0",
+                        "border-dark": "#3c3228"
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-4 sm:px-10 py-3 bg-surface-light dark:bg-surface-dark/50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-text-light dark:text-text-dark">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold tracking-[-0.015em]">Rasi &amp; Co.</h2>
+</div>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium" href="#">Home</a>
+<a class="text-sm font-medium" href="#">Shop All</a>
+<a class="text-sm font-medium" href="#">Spices</a>
+<a class="text-sm font-medium" href="#">Flours</a>
+<a class="text-sm font-medium" href="#">About Us</a>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-border-light dark:bg-border-dark gap-2 min-w-0 px-2.5">
+<span class="material-symbols-outlined text-xl">search</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-border-light dark:bg-border-dark gap-2 min-w-0 px-2.5">
+<span class="material-symbols-outlined text-xl">person</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-primary/20 dark:bg-primary/30 text-primary gap-2 min-w-0 px-2.5">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+<div class="flex flex-wrap gap-2 mb-4">
+<a class="text-subtle-light dark:text-subtle-dark text-sm font-medium" href="#">Home</a>
+<span class="text-subtle-light dark:text-subtle-dark text-sm font-medium">/</span>
+<span class="text-text-light dark:text-text-dark text-sm font-medium">Shopping Cart</span>
+</div>
+<div class="flex flex-wrap justify-between gap-3 mb-8">
+<h1 class="text-4xl font-black tracking-[-0.033em] min-w-72">Your Shopping Cart</h1>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+<div id="cart-items" class="lg:col-span-2 space-y-4">
+    <!-- Cart items will be rendered here by JavaScript. -->
+    <div id="cart-empty" class="p-6 text-center text-subtle-light dark:text-subtle-dark">
+        Your cart is empty. <a class="text-primary hover:underline" href="../1.%20e-commerce_homepage/homepage.html">Continue shopping</a>.
+    </div>
+</div>
+<div class="lg:col-span-1">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-lg space-y-4 sticky top-10">
+<h2 class="text-xl font-bold">Order Summary</h2>
+<div class="space-y-2 border-b border-border-light dark:border-border-dark pb-4">
+<div class="flex justify-between text-base">
+<span>Subtotal</span>
+<span>₹310.00</span>
+</div>
+<div class="flex justify-between text-base">
+<span>Estimated Shipping</span>
+<span>₹50.00</span>
+</div>
+<div class="flex justify-between text-base">
+<span>Estimated Taxes</span>
+<span>₹15.50</span>
+</div>
+</div>
+<div class="flex justify-between text-lg font-bold pt-2">
+<span>Grand Total</span>
+<span>₹375.50</span>
+</div>
+<div class="pt-4 space-y-2">
+<label class="text-sm font-medium" for="promo-code">Promo Code</label>
+<div class="flex gap-2">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary/50 border-border-light dark:border-border-dark bg-border-light dark:bg-border-dark h-11 placeholder:text-subtle-light dark:placeholder:text-subtle-dark px-4 text-base font-normal" id="promo-code" placeholder="Enter code" type="text"/>
+<button class="flex-shrink-0 flex items-center justify-center rounded-lg h-11 bg-primary/20 dark:bg-primary/30 text-primary px-4 text-sm font-bold hover:bg-primary/30 dark:hover:bg-primary/40">Apply</button>
+</div>
+</div>
+    <div class="pt-4">
+        <a href="../5.%20checkout_page/checkout.html" class="w-full inline-flex items-center justify-center rounded-lg h-12 bg-primary text-white text-base font-bold tracking-wide hover:opacity-90 transition-opacity">
+            Proceed to Checkout
+        </a>
+    </div>
+<div class="flex items-center justify-center gap-2 pt-2">
+<span class="material-symbols-outlined text-base text-subtle-light dark:text-subtle-dark">lock</span>
+<p class="text-xs text-subtle-light dark:text-subtle-dark">Secure Checkout</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+// Simple cart handling: read `add` query param, map product ids to product data,
+// persist cart in localStorage and render cart items and totals.
+(function(){
+    const products = {
+        "ragi": {
+            id: 'ragi',
+            name: 'Ragi Flour - 1kg',
+            price: 120.00,
+            priceDisplay: '₹120.00',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCAXsimWTziVX9rjLwumg7Yqq_9OZTIzGBGOOWx_PXuwPEmudvbTTfNkp3lWK3F7RWyqswRxVHgn0qAw3iXK5icRKfFzWMtCceGauqLOpwkB7jhjbnpzLwOnWmjoMhf6XivQ86N4NXYGq4XluAQXU54lPuoh-hiR2o8xvVVxYIduCywTMG_Ko36j9n-S1kyanv6rFLs5NI0mdKV5u7dC8-_3G57rCkLeoxWfFuFoUGq37EWyahSxVJh7iJ5-n8YALi_wk0mya4DsnWv'
+        },
+        "kambhu": {
+            id: 'kambhu',
+            name: 'Kambhu Flour - 500g',
+            price: 95.00,
+            priceDisplay: '₹95.00',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCaxhUc72kYYSm-lQxPmh7mg5VVN56HkpG02Xt8YWNMyraQsYDk6wmA0qCyFlQWaky6jIDD5vkBNbhn0DfplUrSxECgpWdCeYJaWZIEW2oAiPm4a_1SuaOYGETQlWtD5n-QTTGzeSMUfVTboO9VPuTnWaUsPugtyS4RxU_AFZ-9v7xMCKq_4KA4QnEIYLXT8AgDfJtpCjZ9RnkIz2INgupIXXNDl7ODtXgz_i6BvnM117anfnGF-sm3DqVQPUmYdZoY8aHGdCYN-JGZ'
+        },
+        "athirasam": {
+            id: 'athirasam',
+            name: 'Traditional Athirasam Flour Mix',
+            price: 150.00,
+            priceDisplay: '₹150.00',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBcfZOYGsdZO6MqqZ2SKZXSPSXgXwsg_s2tBxQ20BuEacQ4iJPJ_7gMS0k4582lB9mkjbJLkfYkmthPfMaTcXCkmZklMR_XNxgmh09nooFw0CnZtTPQBj7euCY3ZkL71UiMTujl6WbFqegmEuda761x_lKIWZnTduHcQ3oDF79B58nWK8z-55NLmB5iYxqJIkGNwP8L9AEOL43L6T9_SmznpUyLGr5a5DRUjaixQbhhDq09Et4O4fq4iSN0wZLcgl6ZSMwaw7WxW_im'
+        },
+        "spice-blend": {
+            id: 'spice-blend',
+            name: 'Aromatic Spice Blend',
+            price: 200.00,
+            priceDisplay: '₹200.00',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCVqqK1j2VQCAGMY4uMBgcktYglFoq3KMuhPbSqovwG0MpuE8g3MKZE-1jptNCb55QNfOW9BoRirax9zn7LTiY3szR4BlBZQizICbdPtCNQxC-KnUWwHrN3q0VV24efLI4BUvyg2NcI6CXanqCrkHgaE3sbFoPms2XA2uAEXk4GVHn5zVsT0ukqQxMRFRZqUbDJT7KiQjMkSh1bqBDf7GDUuJMw5T27w6dithhKMEQy_Dni8V59NMu95efsBhv8AyEoxPD9-M8AZ2zV'
+        }
+    };
+
+    function qs(name){ return new URLSearchParams(window.location.search).get(name); }
+    function loadCart(){ try{ return JSON.parse(localStorage.getItem('rasi_cart')||'[]'); }catch(e){ return []; } }
+    function saveCart(cart){ localStorage.setItem('rasi_cart', JSON.stringify(cart)); }
+
+    function addProductToCart(id){
+        const p = products[id];
+        if(!p) return false;
+        const cart = loadCart();
+        const existing = cart.find(i=>i.id===id);
+        if(existing){ existing.qty = (existing.qty||1)+1; }
+        else { cart.push({ id: p.id, name: p.name, price: p.price, qty: 1, image: p.image }); }
+        saveCart(cart);
+        return true;
+    }
+
+    function formatCurrency(n){ return '₹' + n.toFixed(2); }
+
+    function renderCart(){
+        const container = document.getElementById('cart-items');
+        const empty = document.getElementById('cart-empty');
+        const cart = loadCart();
+        container.innerHTML = '';
+        if(!cart.length){
+            container.appendChild(empty);
+            // update order summary
+            document.querySelector('.lg\\:col-span-1 .flex.justify-between.text-lg.font-bold.pt-2 span:last-child')?.textContent = formatCurrency(0);
+            return;
+        }
+        // remove empty message
+        if(empty && empty.parentNode) empty.parentNode.removeChild(empty);
+
+        let subtotal = 0;
+        cart.forEach(item=>{
+            subtotal += item.price * (item.qty||1);
+            const row = document.createElement('div');
+            row.className = 'grid grid-cols-6 items-center gap-4 bg-surface-light dark:bg-surface-dark p-4 rounded-lg';
+
+            row.innerHTML = `
+                <div class="col-span-6 sm:col-span-3 flex items-start gap-4">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-[70px] flex-shrink-0" style="background-image: url('${item.image}');"></div>
+                    <div class="flex flex-1 flex-col justify-center">
+                        <p class="text-base font-medium">${item.name}</p>
+                        <p class="text-sm font-normal text-subtle-light dark:text-subtle-dark">Price: ${formatCurrency(item.price)}</p>
+                        <button class="text-sm font-normal text-subtle-light dark:text-subtle-dark text-left hover:text-primary mt-1 remove-btn" data-id="${item.id}">Remove</button>
+                    </div>
+                </div>
+                <div class="col-span-3 sm:col-span-1 flex justify-start sm:justify-center">
+                    <div class="flex items-center gap-2">
+                        <button class="qty-decr flex h-7 w-7 items-center justify-center rounded-full bg-border-light dark:bg-border-dark cursor-pointer text-base font-medium" data-id="${item.id}">-</button>
+                        <input class="w-6 p-0 text-center bg-transparent focus:outline-0 focus:ring-0 focus:border-none border-none text-base font-medium" type="number" value="${item.qty}" data-id="${item.id}" min="1" />
+                        <button class="qty-incr flex h-7 w-7 items-center justify-center rounded-full bg-border-light dark:bg-border-dark cursor-pointer text-base font-medium" data-id="${item.id}">+</button>
+                    </div>
+                </div>
+                <p class="col-span-3 sm:col-span-1 font-medium text-right">${formatCurrency(item.price * item.qty)}</p>
+                <div class="col-span-1 hidden sm:flex justify-end">
+                    <button class="text-subtle-light dark:text-subtle-dark hover:text-primary delete-btn" data-id="${item.id}">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            `;
+
+            container.appendChild(row);
+        });
+
+        // order summary
+        const shipping = 50.00;
+        const taxes = +(subtotal * 0.05).toFixed(2);
+        const grand = +(subtotal + shipping + taxes).toFixed(2);
+
+        // update summary fields
+        const summary = document.querySelector('.lg\\:col-span-1');
+        if(summary){
+            summary.querySelectorAll('div.flex.justify-between.text-base')[0].children[1].textContent = formatCurrency(subtotal);
+            summary.querySelectorAll('div.flex.justify-between.text-base')[1].children[1].textContent = formatCurrency(shipping);
+            summary.querySelectorAll('div.flex.justify-between.text-base')[2].children[1].textContent = formatCurrency(taxes);
+            summary.querySelector('.flex.justify-between.text-lg.font-bold.pt-2 span:last-child').textContent = formatCurrency(grand);
+        }
+
+        bindButtons();
+    }
+
+    function bindButtons(){
+        document.querySelectorAll('.remove-btn').forEach(btn=>btn.addEventListener('click', e=>{
+            const id = btn.dataset.id; let cart = loadCart(); cart = cart.filter(i=>i.id!==id); saveCart(cart); renderCart();
+        }));
+        document.querySelectorAll('.delete-btn').forEach(btn=>btn.addEventListener('click', e=>{
+            const id = btn.dataset.id; let cart = loadCart(); cart = cart.filter(i=>i.id!==id); saveCart(cart); renderCart();
+        }));
+        document.querySelectorAll('.qty-decr').forEach(btn=>btn.addEventListener('click', e=>{
+            const id = btn.dataset.id; let cart = loadCart(); const it = cart.find(i=>i.id===id); if(it && it.qty>1){ it.qty--; saveCart(cart); renderCart(); }
+        }));
+        document.querySelectorAll('.qty-incr').forEach(btn=>btn.addEventListener('click', e=>{
+            const id = btn.dataset.id; let cart = loadCart(); const it = cart.find(i=>i.id===id); if(it){ it.qty++; saveCart(cart); renderCart(); }
+        }));
+        document.querySelectorAll('[type="number"]').forEach(input=>{
+            input.addEventListener('change', e=>{
+                const id = input.dataset.id; let val = parseInt(input.value||'1',10); if(isNaN(val)||val<1) val=1; let cart = loadCart(); const it = cart.find(i=>i.id===id); if(it){ it.qty = val; saveCart(cart); renderCart(); }
+            });
+        });
+    }
+
+    // On load: if ?add=ID is present, add product and show a short notice
+    document.addEventListener('DOMContentLoaded', function(){
+        const addId = qs('add');
+        if(addId && products[addId]){
+            addProductToCart(addId);
+            const notice = document.createElement('div');
+            notice.className = 'fixed bottom-6 right-6 bg-primary text-white px-4 py-2 rounded-lg shadow-lg';
+            notice.textContent = 'Added to cart';
+            document.body.appendChild(notice);
+            setTimeout(()=>{ notice.remove(); }, 2000);
+        }
+        renderCart();
+    });
+})();
+</script>
+</body></html>
