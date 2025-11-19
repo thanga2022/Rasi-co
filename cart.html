@@ -141,11 +141,13 @@
 </div>
 </main>
 </div>
+<script src="cart.js"></script>
 <script>
 // Simple cart handling: read `add` query param, map product ids to product data,
 // persist cart in localStorage and render cart items and totals.
 (function(){
-    const products = {
+    const cartApi = window.RasiCart || {};
+    const fallbackProducts = {
         "ragi": {
             id: 'ragi',
             name: 'Ragi Flour - 1kg',
@@ -175,10 +177,17 @@
             image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCVqqK1j2VQCAGMY4uMBgcktYglFoq3KMuhPbSqovwG0MpuE8g3MKZE-1jptNCb55QNfOW9BoRirax9zn7LTiY3szR4BlBZQizICbdPtCNQxC-KnUWwHrN3q0VV24efLI4BUvyg2NcI6CXanqCrkHgaE3sbFoPms2XA2uAEXk4GVHn5zVsT0ukqQxMRFRZqUbDJT7KiQjMkSh1bqBDf7GDUuJMw5T27w6dithhKMEQy_Dni8V59NMu95efsBhv8AyEoxPD9-M8AZ2zV'
         }
     };
+    const products = cartApi.products || fallbackProducts;
 
     function qs(name){ return new URLSearchParams(window.location.search).get(name); }
-    function loadCart(){ try{ return JSON.parse(localStorage.getItem('rasi_cart')||'[]'); }catch(e){ return []; } }
-    function saveCart(cart){ localStorage.setItem('rasi_cart', JSON.stringify(cart)); }
+    function loadCart(){
+        if (cartApi.load) return cartApi.load();
+        try{ return JSON.parse(localStorage.getItem('rasi_cart')||'[]'); }catch(e){ return []; }
+    }
+    function saveCart(cart){
+        if (cartApi.save) return cartApi.save(cart);
+        localStorage.setItem('rasi_cart', JSON.stringify(cart));
+    }
 
     function addProductToCart(id){
         const p = products[id];
@@ -282,13 +291,17 @@
         const addId = qs('add');
         if(addId && products[addId]){
             addProductToCart(addId);
-            const notice = document.createElement('div');
-            notice.className = 'fixed bottom-6 right-6 bg-primary text-white px-4 py-2 rounded-lg shadow-lg';
-            notice.textContent = 'Added to cart';
-            document.body.appendChild(notice);
-            setTimeout(()=>{ notice.remove(); }, 2000);
+            if(cartApi.toast){ cartApi.toast('Added to cart'); }
+            else{
+                const notice = document.createElement('div');
+                notice.className = 'fixed bottom-6 right-6 bg-primary text-white px-4 py-2 rounded-lg shadow-lg';
+                notice.textContent = 'Added to cart';
+                document.body.appendChild(notice);
+                setTimeout(()=>{ notice.remove(); }, 2000);
+            }
         }
         renderCart();
+        cartApi.updateBadge && cartApi.updateBadge();
     });
 })();
 </script>

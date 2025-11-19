@@ -123,7 +123,7 @@
 <div class="flex flex-col gap-6">
 <div class="flex flex-col gap-3">
 <h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tighter">Organic Ragi Flour</h1>
-<p class="text-2xl font-bold text-primary">$12.99</p>
+<p class="text-2xl font-bold text-primary">₹249.00</p>
 <div class="flex items-center gap-2">
 <div class="flex text-primary">
 <span class="material-symbols-outlined !text-xl">star</span>
@@ -142,13 +142,13 @@
 <div class="flex items-center gap-4">
 <p class="font-semibold">Quantity:</p>
 <div class="flex items-center border border-gray-300 dark:border-accent-secondary/50 rounded-lg">
-<button class="px-3 py-2 text-lg font-bold text-text-secondary dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-accent-secondary/30 rounded-l-md transition-colors">-</button>
-<input class="w-12 text-center border-0 bg-transparent focus:ring-0 p-2 font-semibold" type="text" value="1"/>
-<button class="px-3 py-2 text-lg font-bold text-text-secondary dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-accent-secondary/30 rounded-r-md transition-colors">+</button>
+<button type="button" class="px-3 py-2 text-lg font-bold text-text-secondary dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-accent-secondary/30 rounded-l-md transition-colors" data-qty-delta="-1">-</button>
+<input id="product-qty" class="w-12 text-center border-0 bg-transparent focus:ring-0 p-2 font-semibold" type="number" min="1" value="1"/>
+<button type="button" class="px-3 py-2 text-lg font-bold text-text-secondary dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-accent-secondary/30 rounded-r-md transition-colors" data-qty-delta="1">+</button>
 </div>
 </div>
                 <div class="flex items-center gap-3">
-                    <a href="cart.html" role="button" aria-label="Add Organic Ragi Flour to cart" class="w-full flex items-center justify-center gap-2 h-12 px-6 rounded-lg bg-accent text-white font-bold text-base hover:bg-accent/90 transition-colors">
+                    <a href="cart.html?add=ragi" role="button" aria-label="Add Organic Ragi Flour to cart" data-add="ragi" data-qty-input="#product-qty" class="w-full flex items-center justify-center gap-2 h-12 px-6 rounded-lg bg-accent text-white font-bold text-base hover:bg-accent/90 transition-colors">
                         <span class="material-symbols-outlined">shopping_bag</span>
                         Add to Cart
                     </a>
@@ -159,7 +159,7 @@
 </div>
 <div class="flex items-center gap-3 p-4 border border-dashed border-accent-secondary/50 rounded-lg">
 <span class="material-symbols-outlined text-accent-secondary text-2xl">local_shipping</span>
-<p class="text-sm text-text-secondary dark:text-text-secondary-dark">Free shipping on orders over $50. Estimated delivery: 3-5 business days.</p>
+<p class="text-sm text-text-secondary dark:text-text-secondary-dark">Free shipping on orders over ₹499. Estimated delivery: 3-5 business days.</p>
 </div>
 </div>
 </div>
@@ -231,7 +231,7 @@
 </div>
 <div class="flex flex-col">
 <h3 class="font-bold text-lg group-hover:text-primary transition-colors">Pearl Millet (Kambhu) Flour</h3>
-<p class="text-text-secondary dark:text-text-secondary-dark">$11.50</p>
+<p class="text-text-secondary dark:text-text-secondary-dark">₹149.00</p>
 </div>
 </div>
 <div class="flex flex-col gap-3 group">
@@ -240,7 +240,7 @@
 </div>
 <div class="flex flex-col">
 <h3 class="font-bold text-lg group-hover:text-primary transition-colors">Kelvaraghu Flour</h3>
-<p class="text-text-secondary dark:text-text-secondary-dark">$13.00</p>
+<p class="text-text-secondary dark:text-text-secondary-dark">₹149.00</p>
 </div>
 </div>
 <div class="flex flex-col gap-3 group">
@@ -249,7 +249,7 @@
 </div>
 <div class="flex flex-col">
 <h3 class="font-bold text-lg group-hover:text-primary transition-colors">Athirasam Flour Mix</h3>
-<p class="text-text-secondary dark:text-text-secondary-dark">$9.99</p>
+<p class="text-text-secondary dark:text-text-secondary-dark">₹149.00</p>
 </div>
 </div>
 <div class="flex flex-col gap-3 group">
@@ -258,7 +258,7 @@
 </div>
 <div class="flex flex-col">
 <h3 class="font-bold text-lg group-hover:text-primary transition-colors">Organic Turmeric Powder</h3>
-<p class="text-text-secondary dark:text-text-secondary-dark">$8.50</p>
+<p class="text-text-secondary dark:text-text-secondary-dark">₹149.00</p>
 </div>
 </div>
 </div>
@@ -267,4 +267,19 @@
 </main>
 </div>
 </div>
+<script src="cart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const input = document.getElementById('product-qty');
+  document.querySelectorAll('[data-qty-delta]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(!input) return;
+      const delta = parseInt(btn.dataset.qtyDelta || '0', 10);
+      const current = parseInt(input.value || '1', 10) || 1;
+      const next = Math.max(1, current + delta);
+      input.value = next;
+    });
+  });
+});
+</script>
 </body></html>

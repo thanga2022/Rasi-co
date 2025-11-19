@@ -91,7 +91,7 @@
 </button>
                 <a href="cart.html" class="relative flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full hover:bg-primary/20">
                 <span class="material-symbols-outlined">shopping_bag</span>
-                <span id="cart-count" class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">3</span>
+                <span id="cart-count" data-cart-count class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs font-bold text-white" hidden>0</span>
                 </a>
 </div>
 </div>
@@ -142,8 +142,8 @@
 <input class="absolute w-full h-1 bg-transparent pointer-events-none appearance-none top-0" max="100" min="0" type="range" value="80"/>
 </div>
 <div class="flex justify-between text-sm text-subtle-text-light dark:text-subtle-text-dark">
-<span>$1</span>
-<span>$20</span>
+<span>₹1</span>
+<span>₹20</span>
 </div>
 </div>
 </details>
@@ -185,7 +185,7 @@
 <h4 class="text-base font-bold">Organic Ragi Flour</h4>
 <p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">1 kg</p>
 <div class="mt-4 flex flex-1 items-end justify-between">
-        <p class="text-lg font-bold text-primary">$5.99</p>
+        <p class="text-lg font-bold text-primary">₹149.00</p>
         <a href="cart.html" data-add="ragi" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
           <span class="material-symbols-outlined">add_shopping_cart</span>
         </a>
@@ -200,7 +200,7 @@
 <h4 class="text-base font-bold">Stone-Ground Ragi</h4>
 <p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">500 g</p>
 <div class="mt-4 flex flex-1 items-end justify-between">
-        <p class="text-lg font-bold text-primary">$3.49</p>
+        <p class="text-lg font-bold text-primary">₹149.00</p>
         <a href="cart.html" data-add="ragi" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
           <span class="material-symbols-outlined">add_shopping_cart</span>
         </a>
@@ -215,7 +215,7 @@
 <h4 class="text-base font-bold">Sprouted Ragi Flour</h4>
 <p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">1 kg</p>
 <div class="mt-4 flex flex-1 items-end justify-between">
-        <p class="text-lg font-bold text-primary">$7.99</p>
+        <p class="text-lg font-bold text-primary">₹149.00</p> 
         <a href="cart.html" data-add="ragi" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
           <span class="material-symbols-outlined">add_shopping_cart</span>
         </a>
@@ -230,7 +230,7 @@
 <h4 class="text-base font-bold">Organic Kambhu Flour</h4>
 <p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">1 kg</p>
 <div class="mt-4 flex flex-1 items-end justify-between">
-        <p class="text-lg font-bold text-primary">$6.49</p>
+        <p class="text-lg font-bold text-primary">₹149.00</p>
         <a href="cart.html" data-add="kambhu" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
           <span class="material-symbols-outlined">add_shopping_cart</span>
         </a>
@@ -245,7 +245,7 @@
 <h4 class="text-base font-bold">Turmeric Powder</h4>
 <p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">250 g</p>
 <div class="mt-4 flex flex-1 items-end justify-between">
-        <p class="text-lg font-bold text-primary">$4.99</p>
+        <p class="text-lg font-bold text-primary">₹149.00</p>
         <a href="cart.html" data-add="spice-blend" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
           <span class="material-symbols-outlined">add_shopping_cart</span>
         </a>
@@ -260,7 +260,7 @@
 <h4 class="text-base font-bold">Athirasam Flour Mix</h4>
 <p class="mt-1 text-sm text-subtle-text-light dark:text-subtle-text-dark">500 g</p>
 <div class="mt-4 flex flex-1 items-end justify-between">
-        <p class="text-lg font-bold text-primary">$8.99</p>
+        <p class="text-lg font-bold text-primary">₹149.00</p>
         <a href="cart.html" data-add="athirasam" class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary hover:text-white">
           <span class="material-symbols-outlined">add_shopping_cart</span>
         </a>
@@ -331,34 +331,5 @@
 </div>
 </footer>
 </div>
-<script>
-// In-place Add-to-Cart: prevent navigation, add product to localStorage cart, show toast, update cart badge.
-(function(){
-  const products = {
-    ragi: { id: 'ragi', name: 'Ragi Flour - 1kg', price: 120.00 },
-    kambhu: { id: 'kambhu', name: 'Kambhu Flour - 500g', price: 95.00 },
-    'athirasam': { id: 'athirasam', name: 'Traditional Athirasam Flour Mix', price: 150.00 },
-    'spice-blend': { id: 'spice-blend', name: 'Aromatic Spice Blend', price: 200.00 }
-  };
-
-  function loadCart(){ try{ return JSON.parse(localStorage.getItem('rasi_cart')||'[]'); }catch(e){ return []; } }
-  function saveCart(cart){ localStorage.setItem('rasi_cart', JSON.stringify(cart)); }
-  function updateBadge(){ const cart = loadCart(); const count = cart.reduce((s,i)=>s + (i.qty||1),0); const el = document.getElementById('cart-count'); if(el) el.textContent = String(count); }
-  function toast(msg){ const n = document.createElement('div'); n.className = 'fixed bottom-6 right-6 bg-primary text-white px-4 py-2 rounded-lg shadow-lg'; n.textContent = msg; document.body.appendChild(n); setTimeout(()=>n.remove(),1500); }
-
-  function addToCart(id){ const p = products[id]; if(!p) return; const cart = loadCart(); const existing = cart.find(i=>i.id===id); if(existing) existing.qty = (existing.qty||1)+1; else cart.push({ id: p.id, name: p.name, price: p.price, qty: 1 }); saveCart(cart); updateBadge(); }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    updateBadge();
-    document.querySelectorAll('a[data-add]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        const id = a.getAttribute('data-add');
-        addToCart(id);
-        toast('Added to cart');
-      });
-    });
-  });
-})();
-</script>
+<script src="cart.js"></script>
 </body></html>
