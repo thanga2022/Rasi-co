@@ -1,33 +1,53 @@
 (function () {
   const CART_KEY = 'rasi_cart';
-  const WINDOW_CART_PREFIX = '__RASI_CART__='; 
+  const WINDOW_CART_PREFIX = '__RASI_CART__=';
   const TOAST_DURATION = 1800;
   const PRODUCT_CATALOG = {
     ragi: {
       id: 'ragi',
-      name: 'Ragi Flour - 1kg',
-      price: 120.0,
+      name: 'Ragi Flour',
+      prices: {
+        '250g': 149.0,
+        '500g': 248.0,
+        '1kg': 449.0
+      },
+      defaultPrice: 449.0,
       image:
         'https://lh3.googleusercontent.com/aida-public/AB6AXuCAXsimWTziVX9rjLwumg7Yqq_9OZTIzGBGOOWx_PXuwPEmudvbTTfNkp3lWK3F7RWyqswRxVHgn0qAw3iXK5icRKfFzWMtCceGauqLOpwkB7jhjbnpzLwOnWmjoMhf6XivQ86N4NXYGq4XluAQXU54lPuoh-hiR2o8xvVVxYIduCywTMG_Ko36j9n-S1kyanv6rFLs5NI0mdKV5u7dC8-_3G57rCkLeoxWfFuFoUGq37EWyahSxVJh7iJ5-n8YALi_wk0mya4DsnWv'
     },
     kambhu: {
       id: 'kambhu',
-      name: 'Kambhu Flour - 500g',
-      price: 95.0,
+      name: 'Kambhu Flour',
+      prices: {
+        '250g': 149.0,
+        '500g': 248.0,
+        '1kg': 449.0
+      },
+      defaultPrice: 449.0,
       image:
         'https://lh3.googleusercontent.com/aida-public/AB6AXuCaxhUc72kYYSm-lQxPmh7mg5VVN56HkpG02Xt8YWNMyraQsYDk6wmA0qCyFlQWaky6jIDD5vkBNbhn0DfplUrSxECgpWdCeYJaWZIEW2oAiPm4a_1SuaOYGETQlWtD5n-QTTGzeSMUfVTboO9VPuTnWaUsPugtyS4RxU_AFZ-9v7xMCKq_4KA4QnEIYLXT8AgDfJtpCjZ9RnkIz2INgupIXXNDl7ODtXgz_i6BvnM117anfnGF-sm3DqVQPUmYdZoY8aHGdCYN-JGZ'
     },
     athirasam: {
       id: 'athirasam',
       name: 'Traditional Athirasam Flour Mix',
-      price: 150.0,
+      prices: {
+        '250g': 149.0,
+        '500g': 248.0,
+        '1kg': 449.0
+      },
+      defaultPrice: 449.0,
       image:
         'https://lh3.googleusercontent.com/aida-public/AB6AXuBcfZOYGsdZO6MqqZ2SKZXSPSXgXwsg_s2tBxQ20BuEacQ4iJPJ_7gMS0k4582lB9mkjbJLkfYkmthPfMaTcXCkmZklMR_XNxgmh09nooFw0CnZtTPQBj7euCY3ZkL71UiMTujl6WbFqegmEuda761x_lKIWZnTduHcQ3oDF79B58nWK8z-55NLmB5iYxqJIkGNwP8L9AEOL43L6T9_SmznpUyLGr5a5DRUjaixQbhhDq09Et4O4fq4iSN0wZLcgl6ZSMwaw7WxW_im'
     },
     'spice-blend': {
       id: 'spice-blend',
       name: 'Aromatic Spice Blend',
-      price: 200.0,
+      prices: {
+        '250g': 149.0,
+        '500g': 248.0,
+        '1kg': 449.0
+      },
+      defaultPrice: 449.0,
       image:
         'https://lh3.googleusercontent.com/aida-public/AB6AXuCVqqK1j2VQCAGMY4uMBgcktYglFoq3KMuhPbSqovwG0MpuE8g3MKZE-1jptNCb55QNfOW9BoRirax9zn7LTiY3szR4BlBZQizICbdPtCNQxC-KnUWwHrN3q0VV24efLI4BUvyg2NcI6CXanqCrkHgaE3sbFoPms2XA2uAEXk4GVHn5zVsT0ukqQxMRFRZqUbDJT7KiQjMkSh1bqBDf7GDUuJMw5T27w6dithhKMEQy_Dni8V59NMu95efsBhv8AyEoxPD9-M8AZ2zV'
     }
@@ -119,22 +139,27 @@
     toastTimeout = setTimeout(() => toast.remove(), TOAST_DURATION);
   }
 
-  function addToCart(productId, qty = 1) {
+  function addToCart(productId, qty = 1, size = null) {
     const product = PRODUCT_CATALOG[productId];
     if (!product) {
       console.warn('Unknown product id:', productId);
       return false;
     }
     const cart = loadCart();
-    const existing = cart.find((item) => item.id === productId);
+    const cartId = size ? `${productId}-${size}` : productId;
+    const existing = cart.find((item) => item.cartId === cartId);
+    const price = (size && product.prices && product.prices[size]) || product.defaultPrice || product.price;
+
     if (existing) {
       existing.qty = (existing.qty || 1) + qty;
     } else {
       cart.push({
+        cartId,
         id: product.id,
-        name: product.name,
-        price: product.price,
+        name: size ? `${product.name} (${size})` : product.name,
+        price: price,
         qty,
+        size,
         image: product.image
       });
     }
@@ -158,6 +183,11 @@
     return 1;
   }
 
+  function resolveSize() {
+    const sizeInput = document.getElementById('product-size');
+    return sizeInput ? sizeInput.value : null;
+  }
+
   function bindAddButtons(root = document) {
     root.querySelectorAll('[data-add]').forEach((btn) => {
       if (btn.dataset.cartBound === 'true') return;
@@ -167,7 +197,8 @@
         if (!id) return;
         if (btn.tagName === 'A') event.preventDefault();
         const qty = resolveQty(btn);
-        const success = addToCart(id, qty);
+        const size = resolveSize();
+        const success = addToCart(id, qty, size);
         if (!success) return;
         const toastMsg = btn.dataset.toast;
         if (toastMsg) showToast(toastMsg);

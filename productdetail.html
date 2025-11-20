@@ -123,7 +123,7 @@
 <div class="flex flex-col gap-6">
 <div class="flex flex-col gap-3">
 <h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tighter">Organic Ragi Flour</h1>
-<p class="text-2xl font-bold text-primary">₹249.00</p>
+<p id="product-price" class="text-2xl font-bold text-primary">₹449.00</p>
 <div class="flex items-center gap-2">
 <div class="flex text-primary">
 <span class="material-symbols-outlined !text-xl">star</span>
@@ -139,6 +139,14 @@
                                 </p>
 </div>
 <div class="flex flex-col gap-4 p-6 bg-background-light dark:bg-surface-dark rounded-xl">
+<div class="flex items-center gap-4">
+<p class="font-semibold">Size:</p>
+<select id="product-size" class="w-48 rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-surface-dark text-sm font-medium focus:border-primary focus:ring-primary p-2.5">
+  <option value="1kg">1 kg</option>
+  <option value="500g">500 g</option>
+  <option value="250g">250 g</option>
+</select>
+</div>
 <div class="flex items-center gap-4">
 <p class="font-semibold">Quantity:</p>
 <div class="flex items-center border border-gray-300 dark:border-accent-secondary/50 rounded-lg">
@@ -270,16 +278,57 @@
 <script src="cart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
-  const input = document.getElementById('product-qty');
+  const qtyInput = document.getElementById('product-qty');
+  const sizeSelect = document.getElementById('product-size');
+  const priceDisplay = document.getElementById('product-price');
+
+  const priceMap = {
+    '250g': 149,
+    '500g': 248,
+    '1kg': 449
+  };
+
+  function calculatePrice(size, qty) {
+    const unitPrice = priceMap[size] || 0;
+    return unitPrice * qty;
+  }
+
+  function updateProductPrice() {
+    if (!sizeSelect || !qtyInput || !priceDisplay) return;
+    
+    const size = sizeSelect.value;
+    const qty = parseInt(qtyInput.value || '1', 10);
+    
+    const finalPrice = calculatePrice(size, qty);
+    
+    priceDisplay.textContent = "₹" + finalPrice.toFixed(2);
+  }
+
+  // Quantity buttons logic
   document.querySelectorAll('[data-qty-delta]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      if(!input) return;
+      if(!qtyInput) return;
       const delta = parseInt(btn.dataset.qtyDelta || '0', 10);
-      const current = parseInt(input.value || '1', 10) || 1;
+      const current = parseInt(qtyInput.value || '1', 10) || 1;
       const next = Math.max(1, current + delta);
-      input.value = next;
+      qtyInput.value = next;
+      updateProductPrice();
     });
   });
+
+  // Quantity input manual change
+  if (qtyInput) {
+    qtyInput.addEventListener('change', updateProductPrice);
+    qtyInput.addEventListener('input', updateProductPrice);
+  }
+
+  // Size change
+  if(sizeSelect) {
+    sizeSelect.addEventListener('change', updateProductPrice);
+  }
+  
+  // Initial update
+  updateProductPrice();
 });
 </script>
 </body></html>
