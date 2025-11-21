@@ -141,11 +141,12 @@
 <div class="flex flex-col gap-4 p-6 bg-background-light dark:bg-surface-dark rounded-xl">
 <div class="flex items-center gap-4">
 <p class="font-semibold">Size:</p>
-<select id="product-size" class="w-48 rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-surface-dark text-sm font-medium focus:border-primary focus:ring-primary p-2.5">
-  <option value="1kg">1 kg</option>
-  <option value="500g">500 g</option>
-  <option value="250g">250 g</option>
-</select>
+<input type="hidden" id="product-size" value="1kg">
+<div class="flex flex-wrap gap-2" id="size-selector">
+  <button type="button" data-value="250g" class="px-4 py-2 rounded-lg border border-gray-200 dark:border-accent-secondary/30 text-sm font-medium hover:border-primary hover:text-primary transition-colors">250 g</button>
+  <button type="button" data-value="500g" class="px-4 py-2 rounded-lg border border-gray-200 dark:border-accent-secondary/30 text-sm font-medium hover:border-primary hover:text-primary transition-colors">500 g</button>
+  <button type="button" data-value="1kg" class="px-4 py-2 rounded-lg border-primary bg-primary/10 text-primary text-sm font-bold transition-colors">1 kg</button>
+</div>
 </div>
 <div class="flex items-center gap-4">
 <p class="font-semibold">Quantity:</p>
@@ -323,9 +324,23 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   // Size change
-  if(sizeSelect) {
-    sizeSelect.addEventListener('change', updateProductPrice);
-  }
+  const sizeButtons = document.querySelectorAll('#size-selector button');
+  sizeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(!sizeSelect) return;
+      
+      // Update hidden input
+      sizeSelect.value = btn.dataset.value;
+      
+      // Update visual state
+      sizeButtons.forEach(b => {
+        b.className = "px-4 py-2 rounded-lg border border-gray-200 dark:border-accent-secondary/30 text-sm font-medium hover:border-primary hover:text-primary transition-colors";
+      });
+      btn.className = "px-4 py-2 rounded-lg border-primary bg-primary/10 text-primary text-sm font-bold transition-colors";
+      
+      updateProductPrice();
+    });
+  });
   
   // Initial update
   updateProductPrice();
