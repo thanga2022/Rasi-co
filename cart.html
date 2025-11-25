@@ -143,104 +143,77 @@
 </div>
 <script src="cart.js"></script>
 <script>
-// Simple cart handling: read `add` query param, map product ids to product data,
-// persist cart in localStorage and render cart items and totals.
 (function(){
-    const cartApi = window.RasiCart || {};
-    const fallbackProducts = {
-        "ragi": {
-            id: 'ragi',
-            name: 'Ragi Flour - 1kg',
-            price: 120.00,
-            priceDisplay: '₹120.00',
-            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCAXsimWTziVX9rjLwumg7Yqq_9OZTIzGBGOOWx_PXuwPEmudvbTTfNkp3lWK3F7RWyqswRxVHgn0qAw3iXK5icRKfFzWMtCceGauqLOpwkB7jhjbnpzLwOnWmjoMhf6XivQ86N4NXYGq4XluAQXU54lPuoh-hiR2o8xvVVxYIduCywTMG_Ko36j9n-S1kyanv6rFLs5NI0mdKV5u7dC8-_3G57rCkLeoxWfFuFoUGq37EWyahSxVJh7iJ5-n8YALi_wk0mya4DsnWv'
-        },
-        "kambhu": {
-            id: 'kambhu',
-            name: 'Kambhu Flour - 500g',
-            price: 95.00,
-            priceDisplay: '₹95.00',
-            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCaxhUc72kYYSm-lQxPmh7mg5VVN56HkpG02Xt8YWNMyraQsYDk6wmA0qCyFlQWaky6jIDD5vkBNbhn0DfplUrSxECgpWdCeYJaWZIEW2oAiPm4a_1SuaOYGETQlWtD5n-QTTGzeSMUfVTboO9VPuTnWaUsPugtyS4RxU_AFZ-9v7xMCKq_4KA4QnEIYLXT8AgDfJtpCjZ9RnkIz2INgupIXXNDl7ODtXgz_i6BvnM117anfnGF-sm3DqVQPUmYdZoY8aHGdCYN-JGZ'
-        },
-        "athirasam": {
-            id: 'athirasam',
-            name: 'Traditional Athirasam Flour Mix',
-            price: 150.00,
-            priceDisplay: '₹150.00',
-            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBcfZOYGsdZO6MqqZ2SKZXSPSXgXwsg_s2tBxQ20BuEacQ4iJPJ_7gMS0k4582lB9mkjbJLkfYkmthPfMaTcXCkmZklMR_XNxgmh09nooFw0CnZtTPQBj7euCY3ZkL71UiMTujl6WbFqegmEuda761x_lKIWZnTduHcQ3oDF79B58nWK8z-55NLmB5iYxqJIkGNwP8L9AEOL43L6T9_SmznpUyLGr5a5DRUjaixQbhhDq09Et4O4fq4iSN0wZLcgl6ZSMwaw7WxW_im'
-        },
-        "spice-blend": {
-            id: 'spice-blend',
-            name: 'Aromatic Spice Blend',
-            price: 200.00,
-            priceDisplay: '₹200.00',
-            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCVqqK1j2VQCAGMY4uMBgcktYglFoq3KMuhPbSqovwG0MpuE8g3MKZE-1jptNCb55QNfOW9BoRirax9zn7LTiY3szR4BlBZQizICbdPtCNQxC-KnUWwHrN3q0VV24efLI4BUvyg2NcI6CXanqCrkHgaE3sbFoPms2XA2uAEXk4GVHn5zVsT0ukqQxMRFRZqUbDJT7KiQjMkSh1bqBDf7GDUuJMw5T27w6dithhKMEQy_Dni8V59NMu95efsBhv8AyEoxPD9-M8AZ2zV'
-        }
-    };
-    const products = cartApi.products || fallbackProducts;
+    const cartApi = window.RasiCart;
 
-    function qs(name){ return new URLSearchParams(window.location.search).get(name); }
-    function loadCart(){
-        if (cartApi.load) return cartApi.load();
-        try{ return JSON.parse(localStorage.getItem('rasi_cart')||'[]'); }catch(e){ return []; }
-    }
-    function saveCart(cart){
-        if (cartApi.save) return cartApi.save(cart);
-        localStorage.setItem('rasi_cart', JSON.stringify(cart));
+    function loadCart() {
+        return cartApi.load();
     }
 
-    function addProductToCart(id){
-        const p = products[id];
-        if(!p) return false;
-        const cart = loadCart();
-        const existing = cart.find(i=>i.id===id);
-        if(existing){ existing.qty = (existing.qty||1)+1; }
-        else { cart.push({ id: p.id, name: p.name, price: p.price, qty: 1, image: p.image }); }
-        saveCart(cart);
-        return true;
+    function saveCart(cart) {
+        cartApi.save(cart);
     }
 
-    function formatCurrency(n){ return '₹' + n.toFixed(2); }
+    function formatCurrency(n) {
+        return '₹' + n.toFixed(2);
+    }
 
     function renderCart(){
         const container = document.getElementById('cart-items');
         const empty = document.getElementById('cart-empty');
         const cart = loadCart();
-        container.innerHTML = '';
-        if(!cart.length){
-            container.appendChild(empty);
-            // update order summary
-            document.querySelector('.lg\\:col-span-1 .flex.justify-between.text-lg.font-bold.pt-2 span:last-child')?.textContent = formatCurrency(0);
+
+        container.innerHTML = "";
+
+        if (!cart.length) {
+            empty.style.display = "block";
+            updateSummary(0);
             return;
         }
-        // remove empty message
-        if(empty && empty.parentNode) empty.parentNode.removeChild(empty);
+
+        empty.style.display = "none";
 
         let subtotal = 0;
-        cart.forEach(item=>{
-            subtotal += item.price * (item.qty||1);
+
+        cart.forEach(item => {
+            const key = item.cartId || item.id;   // IMPORTANT FIX
+            subtotal += item.price * item.qty;
+
             const row = document.createElement('div');
             row.className = 'grid grid-cols-6 items-center gap-4 bg-surface-light dark:bg-surface-dark p-4 rounded-lg';
 
             row.innerHTML = `
                 <div class="col-span-6 sm:col-span-3 flex items-start gap-4">
-                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-[70px] flex-shrink-0" style="background-image: url('${item.image}');"></div>
-                    <div class="flex flex-1 flex-col justify-center">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-[70px]"
+                         style="background-image: url('${item.image}');"></div>
+                    <div class="flex flex-col flex-1">
                         <p class="text-base font-medium">${item.name}</p>
-                        <p class="text-sm font-normal text-subtle-light dark:text-subtle-dark">Price: ${formatCurrency(item.price)}</p>
-                        <button class="text-sm font-normal text-subtle-light dark:text-subtle-dark text-left hover:text-primary mt-1 remove-btn" data-id="${item.id}">Remove</button>
+                        <p class="text-sm text-subtle-light dark:text-subtle-dark">Price: ${formatCurrency(item.price)}</p>
+                        <button class="remove-item text-sm mt-1 text-subtle-light hover:text-primary"
+                                data-id="${key}">Remove</button>
                     </div>
                 </div>
+
                 <div class="col-span-3 sm:col-span-1 flex justify-start sm:justify-center">
                     <div class="flex items-center gap-2">
-                        <button class="qty-decr flex h-7 w-7 items-center justify-center rounded-full bg-border-light dark:bg-border-dark cursor-pointer text-base font-medium" data-id="${item.id}">-</button>
-                        <input class="w-6 p-0 text-center bg-transparent focus:outline-0 focus:ring-0 focus:border-none border-none text-base font-medium" type="number" value="${item.qty}" data-id="${item.id}" min="1" />
-                        <button class="qty-incr flex h-7 w-7 items-center justify-center rounded-full bg-border-light dark:bg-border-dark cursor-pointer text-base font-medium" data-id="${item.id}">+</button>
+                        <button class="qty-decr h-7 w-7 flex items-center justify-center rounded-full bg-border-light dark:bg-border-dark"
+                                data-id="${key}">-</button>
+
+                        <input type="number" min="1" value="${item.qty}" 
+                               class="qty-input w-8 text-center bg-transparent"
+                               data-id="${key}" />
+
+                        <button class="qty-incr h-7 w-7 flex items-center justify-center rounded-full bg-border-light dark:bg-border-dark"
+                                data-id="${key}">+</button>
                     </div>
                 </div>
-                <p class="col-span-3 sm:col-span-1 font-medium text-right">${formatCurrency(item.price * item.qty)}</p>
+
+                <p class="col-span-3 sm:col-span-1 text-right font-medium">
+                    ${formatCurrency(item.price * item.qty)}
+                </p>
+
                 <div class="col-span-1 hidden sm:flex justify-end">
-                    <button class="text-subtle-light dark:text-subtle-dark hover:text-primary delete-btn" data-id="${item.id}">
+                    <button class="delete-item text-subtle-light hover:text-primary" data-id="${key}">
                         <span class="material-symbols-outlined">delete</span>
                     </button>
                 </div>
@@ -249,60 +222,77 @@
             container.appendChild(row);
         });
 
-        // order summary
-        const shipping = 50.00;
-        const taxes = +(subtotal * 0.05).toFixed(2);
-        const grand = +(subtotal + shipping + taxes).toFixed(2);
-
-        // update summary fields
-        const summary = document.querySelector('.lg\\:col-span-1');
-        if(summary){
-            summary.querySelectorAll('div.flex.justify-between.text-base')[0].children[1].textContent = formatCurrency(subtotal);
-            summary.querySelectorAll('div.flex.justify-between.text-base')[1].children[1].textContent = formatCurrency(shipping);
-            summary.querySelectorAll('div.flex.justify-between.text-base')[2].children[1].textContent = formatCurrency(taxes);
-            summary.querySelector('.flex.justify-between.text-lg.font-bold.pt-2 span:last-child').textContent = formatCurrency(grand);
-        }
-
+        updateSummary(subtotal);
         bindButtons();
     }
 
-    function bindButtons(){
-        document.querySelectorAll('.remove-btn').forEach(btn=>btn.addEventListener('click', e=>{
-            const id = btn.dataset.id; let cart = loadCart(); cart = cart.filter(i=>i.id!==id); saveCart(cart); renderCart();
-        }));
-        document.querySelectorAll('.delete-btn').forEach(btn=>btn.addEventListener('click', e=>{
-            const id = btn.dataset.id; let cart = loadCart(); cart = cart.filter(i=>i.id!==id); saveCart(cart); renderCart();
-        }));
-        document.querySelectorAll('.qty-decr').forEach(btn=>btn.addEventListener('click', e=>{
-            const id = btn.dataset.id; let cart = loadCart(); const it = cart.find(i=>i.id===id); if(it && it.qty>1){ it.qty--; saveCart(cart); renderCart(); }
-        }));
-        document.querySelectorAll('.qty-incr').forEach(btn=>btn.addEventListener('click', e=>{
-            const id = btn.dataset.id; let cart = loadCart(); const it = cart.find(i=>i.id===id); if(it){ it.qty++; saveCart(cart); renderCart(); }
-        }));
-        document.querySelectorAll('[type="number"]').forEach(input=>{
-            input.addEventListener('change', e=>{
-                const id = input.dataset.id; let val = parseInt(input.value||'1',10); if(isNaN(val)||val<1) val=1; let cart = loadCart(); const it = cart.find(i=>i.id===id); if(it){ it.qty = val; saveCart(cart); renderCart(); }
-            });
-        });
+    function updateSummary(subtotal) {
+        const shipping = subtotal === 0 ? 0 : 50;
+        const taxes = +(subtotal * 0.05).toFixed(2);
+        const grand = subtotal + shipping + taxes;
+
+        const summary = document.querySelector('.lg\\:col-span-1');
+
+        summary.querySelectorAll('div.flex.justify-between.text-base')[0]
+            .children[1].textContent = formatCurrency(subtotal);
+
+        summary.querySelectorAll('div.flex.justify-between.text-base')[1]
+            .children[1].textContent = formatCurrency(shipping);
+
+        summary.querySelectorAll('div.flex.justify-between.text-base')[2]
+            .children[1].textContent = formatCurrency(taxes);
+
+        summary.querySelector('.flex.justify-between.text-lg.font-bold.pt-2 span:last-child')
+            .textContent = formatCurrency(grand);
     }
 
-    // On load: if ?add=ID is present, add product and show a short notice
-    document.addEventListener('DOMContentLoaded', function(){
-        const addId = qs('add');
-        if(addId && products[addId]){
-            addProductToCart(addId);
-            if(cartApi.toast){ cartApi.toast('Added to cart'); }
-            else{
-                const notice = document.createElement('div');
-                notice.className = 'fixed bottom-6 right-6 bg-primary text-white px-4 py-2 rounded-lg shadow-lg';
-                notice.textContent = 'Added to cart';
-                document.body.appendChild(notice);
-                setTimeout(()=>{ notice.remove(); }, 2000);
-            }
+    function bindButtons(){
+        document.querySelectorAll('.remove-item, .delete-item').forEach(btn =>
+            btn.addEventListener('click', () => modifyCart(btn.dataset.id, 'remove'))
+        );
+
+        document.querySelectorAll('.qty-decr').forEach(btn =>
+            btn.addEventListener('click', () => modifyCart(btn.dataset.id, 'decrease'))
+        );
+
+        document.querySelectorAll('.qty-incr').forEach(btn =>
+            btn.addEventListener('click', () => modifyCart(btn.dataset.id, 'increase'))
+        );
+
+        document.querySelectorAll('.qty-input').forEach(input =>
+            input.addEventListener('change', () => modifyCart(input.dataset.id, 'set', input.value))
+        );
+    }
+
+    function modifyCart(key, action, value = null) {
+        let cart = loadCart();
+        let item = cart.find(x => (x.cartId || x.id) === key);
+
+        if (!item) return;
+
+        if (action === 'remove') {
+            cart = cart.filter(x => (x.cartId || x.id) !== key);
         }
+
+        if (action === 'increase') item.qty++;
+
+        if (action === 'decrease' && item.qty > 1) item.qty--;
+
+        if (action === 'set') {
+            const num = parseInt(value);
+            if (num > 0) item.qty = num;
+        }
+
+        saveCart(cart);
         renderCart();
-        cartApi.updateBadge && cartApi.updateBadge();
+        cartApi.updateBadge();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCart();
+        cartApi.updateBadge();
     });
 })();
 </script>
+
 </body></html>
